@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="map" class="sm-none col-md-12 border border-danger" style="height: 650px; width:1350px;position: relative; margin-top: -23px;"></div>
+
+<script>
+    var map = L.map('map').setView([7.4477245, 3.8967116], 17);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Event listener for input changes
+    // $('#search-input').on('input', function() {
+        // Get the value from the input
+        // const locationName = $(this).val();
+
+        // Make an AJAX request to your Django view
+        $.ajax({
+            url: '/sl/',  // Update this with the actual URL for your Django view
+            method: 'POST',
+            data: { 'name': locationName },
+            success: function(response) {
+                // Handle the response from the server
+                if ('lat' in response && 'lon' in response) {
+                    const lat = response.lat;
+                    const lon = response.lon;
+
+                    // Remove existing marker if any
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+
+                    // Add a marker to the map
+                    marker = L.marker([lat, lon]).addTo(map);
+
+                    // Update the map with the received coordinates
+                    map.setView([lat, lon], 17);
+                } else {
+                    console.error('Location not found');
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+</script>
+
+{% endblock %}

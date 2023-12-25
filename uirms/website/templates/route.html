@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="map" class="sm-none col-md-12 border border-danger" style="height: 650px; width:1350px;position: relative; margin-top: -23px;"></div>
+
+{{ coordinates|json_script:"route" }}
+<script>
+// Sample code for updating the client's marker on the map
+function updateClientLocation(lat, lon) {
+    clientMarker.setLatLng([lat, lon]);
+}
+
+    var coordinates = JSON.parse(document.getElementById('route').textContent);  // Pass the coordinates from your Django view
+    
+var map = L.map('map').setView([coordinates[0][0], coordinates[0][1]], 14);  // Set the initial view (center and zoom level)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    // var customIcon = L.icon({
+    // iconUrl: './red.png',
+    // iconSize: [32, 32], // set the size of the icon
+    // shadowUrl: './red.png',
+    // shadowSize:   [50, 22], // size of the shadow
+    // iconAnchor:   [22, 31], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [30, 21],  // the same for the shadow
+    // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor{ icon: customIcon }
+    // });
+    var startMarker = L.marker(coordinates[0]).addTo(map);
+    var endMarker = L.marker(coordinates[coordinates.length - 1]).addTo(map);
+    // console.log(coordinates)
+    var path = L.polyline(coordinates, {color: 'blue', weight: 10}).addTo(map);  // Create and add the path to the map
+    map.fitBounds(path.getBounds());
+</script>   
+    <!-- <script>
+        var map = L.map('map').setView([{{ latitude_start }} {{ longitude_start }}] 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Define the coordinates of the shortest path nodes
+        var shortestPathNodes = [
+            {% for node in shortest_path %}
+                [{{ graph.nodes.node.y }}, {{ graph.nodes.node.x }}],
+            {% endfor %}
+        ];
+
+        L.polyline(shortestPathNodes, { color: 'blue' }).addTo(map);
+    </script> -->
+{% endblock %}

@@ -1,0 +1,155 @@
+<div style="position: relative;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #5ab1bb;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            {{ suggestions|json_script:"search" }}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}" style="font-weight: bolder; color: #103470;">UIRMS</a>
+            <div>
+            <a class="btn btn-light btn-outline-danger m-1" id="locateButton"><i class="bi bi-pin-map-fill"></i></a>
+            <a class="btn btn-light btn-outline-primary m-1" href="{% url 'index' %}"id="homeButton"><i class="bi bi-map"></i></a>
+            <button class="btn btn-light btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="directionButton"><i class="bi bi-signpost"></i></button>
+        </div>
+        <div class="d-flex flex-column px-3" style="border-left: solid 1px grey;">
+          <form method="POST" action="{% url 'sl' %}">
+            {% csrf_token %}
+            <div class="d-flex flex-row w-100">
+              <input class="form-control mr-sm-2" name="name" id="search-input" style="width: 100%; border-radius: 30px 0px 0px 30px;" type="text" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="width: 40%; border-radius: 0px 50px 50px 0px; font-weight: bolder;" type="submit"><i class="bi bi-binoculars-fill"></i></button>
+              <div id="suggestions-dropdown" style="margin-right:100px; margin-top:-10px; padding-left: 10px; position: absolute; top: 100%; right: 0; width: 12%; height: inherit; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 1;" class="border bg-light"></div>
+            </div>
+              
+            </form>
+
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        </div>
+        {% else %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
+          <a class="navbar-brand text-primary" href="{% url 'index' %}" style="font-weight: bolder;">UIRMS</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </ul>
+        {% endif %}           
+        </div>
+      </nav>
+</div>
+{% if user.is_authenticated %}
+<div class="d-flex flex-row justify-content-around bg-light">
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded  w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-utensils" style="font-weight: bolder;">Resturants</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-book" style="font-weight: bolder;">Library</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-tree" style="font-weight: bolder;">Parks & Recreation</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-bank" style="font-weight: bolder;">Theater</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-trophy" style="font-weight: bolder;">Sports</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-briefcase" style="font-weight: bolder;">Admin</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-bus-front" style="font-weight: bolder;">Bustop</i></a>
+  </div>
+  <div class="d-flex flex-row">
+      <a class="btn btn-light btn-rounded w-100 btn-outline-secondary m-0" data-bs-toggle="modal" data-bs-target="#recModal" style="border-radius: 30px;"><i class="bi bi-cash" style="font-weight: bolder;">ATM & Bank</i></a>
+  </div> 
+</div>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Enter Origin And Destination</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'route' %}">
+            {% csrf_token %}          
+          <div class="d-flex flex-row" style="width:100%;">
+            <div class="d-flex flex-column">
+              <i class="bi bi-circle mx-2 mt-2 text-secondary"></i>
+              <i class="bi bi-three-dots-vertical mx-2 mt-2"></i>
+              <i class="bi bi-geo-alt-fill mx-2 mt-2 text-danger"></i>
+            </div>
+            <div class="d-flex flex-column" style="width:100%;">
+              <div>
+                <input class="form-control" id="search-input" type="text" placeholder="Choose start location">
+                <div id="suggestions-dropdown"></div>
+              </div>
+              <br>
+              <div>
+                <input class="form-control" id="search-input" type="text" placeholder="Choose destination">
+                <div id="suggestions-dropdown"></div>
+              </div> 
+            </div>
+            
+          </div>
+          <!-- <div class="d-flex flex-row"></div>
+          <br>
+          <div class="d-flex flex-row"></div> -->
+        </div>
+        <button class="btn btn-primary" href="{% url 'route' %}">Get Direction</button>
+      </form>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="recModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Recommended for you!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>// Add an event listener to the input field
+  const searchInput = document.getElementById('search-input');
+  searchInput.addEventListener('input', function () {
+      const query = searchInput.value;
+  
+      // Make an AJAX request to the Django view
+      fetch(`/search/?query=${query}`)
+          .then(response => response.json())
+          .then(data => {
+              // Handle the suggestions data and update the UI
+              updateSuggestionsDropdown(data.suggestions);
+          })
+          .catch(error => console.error('Error:', error));
+  });
+  
+  function updateSuggestionsDropdown(suggestions) {
+      // Update the UI to display suggestions in a dropdown
+      const dropdown = document.getElementById('suggestions-dropdown');
+      dropdown.innerHTML = '';
+  
+      suggestions.forEach(suggestion => {
+          const suggestionElement = document.createElement('div');
+          suggestionElement.innerText = suggestion.namee;
+          dropdown.appendChild(suggestionElement);
+  
+          // Attach click event to handle selection
+          suggestionElement.addEventListener('click', function () {
+              // Handle selection logic here (e.g., fill input with selected value)
+              searchInput.value = suggestion.namee;
+              dropdown.innerHTML = ''; // Clear dropdown
+          });
+      });
+    }
+</script>

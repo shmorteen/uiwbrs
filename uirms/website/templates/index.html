@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+<div id="map" class="sm-none col-md-12 border border-danger" style="margin-top:0px; height:650px; width:1350px; position: relative; "></div>
+    
+
+<!-- {{ stations|json_script:"stations_json" }} -->
+
+<script>
+var map = L.map('map').setView([7.4477245, 3.8967116], 17);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+// let stations = JSON.parse(document.getElementById('stations_json').textContent)
+
+// for each station, add a Marker
+// stations.forEach(station => {
+//     L.marker([station.latitude, station.longitude]).addTo(map)
+// })
+// initialize the map on the "map" div with a given center and zoom
+// Sample code for updating the client's marker on the map
+
+// window.onload = function () {
+//     // This code will run when the page has fully loaded
+//     updateClientLocation(userloc); // Call your function with the desired latitude and longitude
+// };
+
+// function updateClientLocation(lat, lon) {
+//     clientMarker.setLatLng([lat, lon]);
+// }
+
+var locateButton = document.getElementById('locateButton');
+    locateButton.addEventListener('click', function () {
+        map.locate({ setView: true, maxZoom: 17 });
+    });
+
+    map.on('locationfound', function (e) {
+        var marker = L.marker(e.latlng).addTo(map);
+        var loc = e.latlng
+        marker.bindPopup("You are here").openPopup();
+        console.log(loc)
+    });
+
+    map.on('locationerror', function (e) {
+        alert("Location access denied or an error occurred.");
+    });
+
+map.on('click', (event) => {
+    let lat = event.latlng.lat
+    let longitude = event.latlng.lng
+    L.marker([event.latlng.lat, event.latlng.lng]).addTo(map)
+    // fetch(`/get-nearest-station?latitudes=${lat}&longitudes=${longitude}`).then(response => response.json()).then(result => {
+        // console.log(result)
+        // station_coordinates = result.coordinates
+        // user_coordinates = [lat, longitude]
+        // let polyline = L.polyline([user_coordinates, station_coordinates]).addTo(map)
+    // })
+    // console.log(event.latlng)
+    var popup = L.popup()
+    .setLatLng([lat, longitude])
+    .setContent(`<h1>University of Ibadan</h1>`)
+    .openOn(map);
+})
+
+// Add markers for start and end points
+// L.marker([7.4416532, 3.9062510]).addTo(map).bindPopup("Start Point");
+//         L.marker([7.4427070, 3.9006930]).addTo(map).bindPopup("End Point");
+
+//         // Draw the route (you would need routing data here)
+//         var route = L.polyline([[7.4416532, 3.9062510], [7.4427070, 3.9006930]], {color: 'blue'}).addTo(map);
+</script>
+
+{% else %}
+<h1>Login</h1>
+<form method="POST" action="{% url 'index' %}">
+{% csrf_token %}
+            <div class="mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+        <br>
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-secondary">Login</button>
+</form>
+
+{% endif %}
+
+{% endblock %}
