@@ -1,0 +1,142 @@
+id,name,category,cat,image,latitude,longitude
+1,Klazz Restaurant Tedder Hall.,Dining,7,aasadx,7.445244,3.898887
+2,Bon Apetite,Dining,7,aasadx,7.445652,3.899645
+3,Kountykitchen,Dining,7,aasadx,7.445381,3.900162
+4,Neptune Fingerlickin Lounge,Dining,7,aasadx,7.437181,3.909291
+5,Kilimanjaro,Dining,7,aasadx,7.432377,3.90627
+6,Skye Amala (Ose Olohun Food Canteen),Dining,7,aasadx,7.434151,3.911143
+7,Ola Mummy Food Canteen,Dining,7,aasadx,7.430645,3.91227
+8,Mr biggs challenge,Dining,7,aasadx,7.424429,3.909321
+9,bodija farvous,Dining,7,aasadx,7.422616,3.912351
+10,Flo Flavour Restaurant@44 Awolowo AvenueOld Bodijaibadan.,Dining,7,aasadx,7.418272,3.900396
+11,Cold Stone Creamery,Dining,7,aasadx,7.396389,3.916667
+12,Coldstone Ice Cream,Dining,7,aasadx,7.363681,3.864442
+13,Cold Stone Creamery,Dining,7,aasadx,7.361121,3.868015
+14,Skye Amala (Ose Olohun Food Canteen),Dining,7,aasadx,7.434151,3.911143
+15,Thuraya food centre,Dining,7,aasadx,7.394011,3.901481
+16,Iya Ope Food Canteen,Dining,7,aasadx,7.381316,3.851417
+17,Main Gate,Utility,10,aasadx,7.4412,3.90673
+18,UI Campus Cab Terminus,Utility,10,aasadx,7.4416532,3.906251
+19,University Health Service Jaja Clinic UI,Student Services,4,aasadx,7.442707,3.900693
+20,Black Market,Student Services,4,aasadx,7.44042795,3.898429369
+21,Independence Hall Cafeteria,Dining,7,aasadx,7.4395057,3.896968
+22,Independence Hall,Housing,5,aasadx,7.43979,3.89741
+23,Abu Salam P.G. Hall,Housing,5,aasadx,7.43961,3.89487
+24,Nnmadi Azizkwe Hall's Food Court,Dining,7,aasadx,7.44113935,3.896398305
+25,Nnmadi Azizkwe Hall,Housing,5,aasadx,7.44113935,3.896398305
+26,U&I,Dining,7,aasadx,7.438318,3.8947412
+27,Parking,Utility,10,aasadx,7.43866,3.89492
+28,Department of Geology,Academic,1,aasadx,7.44575,3.89302
+29,Faculty of Social Science,Academic,1,aasadx,7.44662,3.89332
+30,Institute Of African Studies and  IFRA Nigeria,Academic,1,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=oERqnaMylzp7TW3q9Izksg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=139.64369&pitch=0&thumbfov=100,7.44774,3.89409
+31,Faculty of Education,Academic,1,sssss,7.4479112,3.8953523
+32,Kenneth Dike Library,Academic,1,aasadx,7.4466435,3.896104442
+33,University's ICT Center,Technology,6,aasadx,7.44713,3.89647
+34,Faculty of Art's LLT,Academic,1,aasadx,7.44687,3.8972
+35,Faculty of Art,Academic,1,aasadx,7.446,3.89674
+36,Sport Centre,Sports,2,aasadx,7.4456401,3.895720754
+37,Football Pitch,Sports,2,aasadx,7.44523505,3.896597977
+38,University's Tennis Court,Sports,2,aasadx,7.44517435,3.8973448
+39,University's Volleyball Court,Sports,2,aasadx,7.4447276,3.897151985
+40,Training Arena,Sports,2,aasadx,7.44483535,3.89693395
+41,UI's Swimming Poolÿ,Sports,2,aasadx,7.44471575,3.897921832
+42,Squash's Court,Sports,2,aasadx,7.44442305,3.89744585
+43,Student Union Building,Administrative,3,aasadx,7.44464075,3.898280599
+44,Shop,Student Services,4,aasadx,7.4441724,3.897879244
+45,Students Affairsÿ,Administrative,3,aasadx,7.4443278,3.899381735
+46,Parkÿ,Recreational,8,aasadx,7.4450068,3.899347027
+47,Tenchard Hall,Housing,5,aasadx,7.44485,3.89999
+48,Tedder Hall,Housing,5,aasadx,7.44524,3.89898
+49,Tedder's Foodcourt,Dining,7,aasadx,7.4456153,3.8988405
+50,Mellanby Hall,Housing,5,aasadx,7.4457173,3.900203336
+51,Mellanby's Basket Ball Court,Recreational,2,aasadx,7.44534355,3.9002896
+52,Mellanby's Foodcourt,Dining,7,aasadx,7.44555,3.90014
+53,Mellanby's Reading Room,Student Services,4,aasadx,7.44584,3.8993
+54,University Bookshop,Student Services,4,aasadx,7.4451827,3.9005424
+55,University Administration Block,Administrative,3,aasadx,7.44448,3.90015
+56,UI's Mosque,POW,10,aasadx,7.44701685,3.899327399
+57,Parking UI's Mosque,Utility,10,aasadx,7.44734765,3.898405703
+58,Chapel of the Resurrection UI.,POW,10,https://lh5.googleusercontent.com/p/AF1QipNqRDpBPAaTkE4pBteC1QOPgDg8ZZfPTSGS659D=w408-h306-k-no,7.4478366,3.899290531
+59,Chapel Parking,Utility,10,sssss,7.44776005,3.899717874
+60,Faculty of Nursingÿ,Academic,1,sssss,7.448382,3.8979509
+61,Ui Fish shop,Student Services,4,sssss,7.44141,3.90645
+62,Airtel Service Center,Student Services,4,sssss,7.44208,3.90655
+63,Polaris Bank Atm,Student Services,4,sssss,7.44204,3.90643
+64,UI Gate Mosque,POW,10,sssss,7.44209,3.90581
+65,Royal Resorts Ibadan,Housing,5,sssss,7.44345,3.90605
+66,U.i Allumni,Administrative,3,sssss,7.44478,3.90541
+67,Loore Cuts (Fashion Designer),Student Services,4,sssss,7.44557,3.90564
+68,Ui Senior Staff Club,Dining,7,sssss,7.44559,3.90302
+69,Office of International Programmes University of Ibadan,Administrative,3,sssss,7.44509,3.9023
+70,Alumni Centre,Administrative,3,sssss,7.44515,3.90159
+71,Alumni hall UI,Housing,5,sssss,7.44619,3.90208
+72,Discinnovation hub University of Ibadan,Technology,6,sssss,7.44533,3.90106
+73,Our Lady Seat of Wisdom Catholic Chapel,POW,10,sssss,7.44632,3.90111
+74,CONFERENCE CENTER,Event,9,sssss,7.44703,3.90084
+75,Otunba Subomi Balogun Conference Center UI Hotel University of Ibadan.,Event,9,sssss,7.44839,3.90123
+76,UI Hotel,Housing,5,sssss,7.44856,3.90082
+77,Jumia Uni Ibadan Pickup Station,Student Services,4,sssss,7.44935,3.90151
+78,Nigeria Immigration Service,Student Services,4,sssss,7.44909,3.90048
+79,Spices,Housing,5,sssss,7.44938,3.90051
+80,UI Staff Club,Dining,7,sssss,7.44937,3.90144
+81,Skye Bank,Utility,10,sssss,7.44986,3.90198
+82,The Postgraduate College University of Ibadan,Administrative,3,sssss,7.45032,3.90268
+83,Department Of Biochemistry University Of ibadan,Academic,1,sssss,7.44979,3.90314
+84,Department of anatomy,Academic,1,sssss,7.44931,3.90328
+85,Department Of Pharmacology And Therapeutics Faculty Of Basic Medical Sciences College Of Medicine,Academic,1,sssss,7.44903,3.90439
+86,Department Of Physiology Faculty Of Basic Medical Sciences College Of Medicine,Academic,1,sssss,7.44951,3.9045
+87,University of Ibadan Cooperative Hall,Administrative,3,sssss,7.44981,3.90477
+88,IMSG Medical Library,Academic,1,https://lh5.googleusercontent.com/p/AF1QipNT8NZa_TJBqWTANhlLl7jwehj3mELDustzoxEn=w426-h240-k-no,7.45064,3.90401
+89,Department of Pharmacy,Academic,1,https://lh3.googleusercontent.com/J0HCFQQtP5ymCAawgPoPTSn_wyKP-heFvwnIHWMbzd9vl_VmV0AEdNY2mpET0Ycu=w408-h321-k-no,7.45073,3.90331
+90,Department of Biochemistry,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPNjoft0TeiRZ9P8IOUsWJ9gBkqUDt17nejKriM=w426-h240-k-no,7.45099,3.9042
+91,Bode Amao Creche Nursery and Primary School University of Ibadan,Academic,1,https://lh5.googleusercontent.com/p/AF1QipMmw-7KRyLTcC_1ZoT42psE_Pff2v-80lAgujm5=w408-h306-k-no,7.45133,3.90338
+92,University of Ibadan Staff School,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPwxEOkwH7fFbN_jBpfUh-P5WbKN93yRPziFsI=w408-h306-k-no,7.4509,3.90525
+93,Diamond 101.1 Fm,Sudent Services,4,https://lh5.googleusercontent.com/p/AF1QipPW5pf6Dcagr4RBZ4-G6TblOkLZ_3TtO2L6Wsr2=w408-h306-k-no,7.45164,3.90314
+94,Dept. of Works Maintenance and Transport,Academic,1,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=hJ07egx_luDPrhEOyk3OtQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=352.54126&pitch=0&thumbfov=100,7.45127,3.90264
+95,Ibadan University Printing Press,Student Services,4,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=XlDtpg39gUYfDzW7PxU2pw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=234.51065&pitch=0&thumbfov=100,7.45182,3.90295
+96,Apex Classic Salon,Student Services,4,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Xl55M0ZX3-S7k5bqpRgw0w&cb_client=search.gws-prod.gps&w=408&h=240&yaw=306.19138&pitch=0&thumbfov=100,7.45213,3.90299
+97,Cooperative Centre,Administrative,3,https://lh5.googleusercontent.com/p/AF1QipNWd0B1t4sySPcEjyFNkaCk7nyepH0w8RFJIaFh=w408-h306-k-no,7.45243,3.90315
+98,Walex Home Of Fahion,Student Services,4,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=L5kU4Qe3VccXAIGB1jUmrQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=17.535114&pitch=0&thumbfov=100,7.45223,3.90166
+99,Eramike computer institute,Technology,6,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=YaLlUPc1tthAC2ACMVHhfQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=81.276474&pitch=0&thumbfov=100,7.45361,3.90124
+100,JP Collections,Student Services,4,https://maps.gstatic.com/tactile/pane/default_geocode-1x.png,7.45324,3.89996
+101,Abadina College UI Ibadan,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPXYl5RtEoSxSSxgYNF7vcrgqRr6PV0I_OgTb3k=w408-h544-k-no,7.45496,3.90135
+102,Abadina Grammar School,Academic,1,https://lh5.googleusercontent.com/p/AF1QipNp37Aa-3KVu1gz_ie6IV5jM4PsrnYZuBYisT4e=w408-h544-k-no,7.455,3.8998
+103,UI Fire Station,Utility,10,https://lh5.googleusercontent.com/p/AF1QipNsfZgip1SxjmmY3b_FnH8YnoriZl5U8LBeDQbr=w408-h306-k-no,7.45587,3.89851
+104,Ipaye Cool Spot University of Ibadan,Dining,7,https://lh5.googleusercontent.com/p/AF1QipN2nmAEpqlDAu7Nyen8Y4QqugNYACSRS8T1HLm8=w408-h725-k-no,7.4513,3.89852
+105,UI Botanical Garden Entrance,Recreational,2,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ZbIiYxESOdxXJpOLdEOElA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=26.710657&pitch=0&thumbfov=100,7.45668,3.89414
+106,University of Ibadan school of business (UISB),Academic,1,https://lh5.googleusercontent.com/p/AF1QipM2l4Arn5GY7nxVYI5npZlGfLFerLUqcL54YXI4=w408-h544-k-no,7.47472,3.9004
+107,Department of Architecture Ajibode ExtensionUniversity of Ibadan (New Location).,Academic,1,https://lh5.googleusercontent.com/p/AF1QipOgAwvS69_iJA3TMJiWU7R2FUC6_XSOR7iLMoMB=w426-h240-k-no,7.47255,3.89192
+108,University of Ibadan Distance Learning Centre Sasa-Ajibode Ext.,Academic,1,https://lh5.googleusercontent.com/p/AF1QipO2X5rHAAXXoJW-NsTiizlMf5T7KPl4gWZRCx5H=w408-h544-k-no,7.47064,3.90292
+109,Institute of Education University of Ibadan,Academic,1,https://maps.gstatic.com/tactile/pane/default_geocode-1x.png,7.46941,3.90314
+110,Alumni Postgraduate Hall University of Ibadan,Housing,5,https://lh5.googleusercontent.com/p/AF1QipMhCDRcZPH2ompqSnsyd3G7EU5scJfvZ_Jce6pV=w426-h240-k-no,7.46792,3.90459
+111,Olatunde Runsewe Hall,Housing,5,https://lh5.googleusercontent.com/p/AF1QipNR1IFfvAwqpQqeScLbJtyaC_6qX_tZPqe3mZ3t=w408-h306-k-no,7.46411,3.90261
+112,Adebayo Akande Hallÿ,Housing,5,https://lh6.googleusercontent.com/LrJI7qTcBEV-6JHIwaHtUW_264Vh_HjBwHWLJ0BKhspVvois3E03IrvFbzF2iE8DLg=w426-h240-k-no,7.4635509,3.901426566
+113,Pan African University Life and Earth Sciences Institute (Including Health and Agriculture)- PAULESI,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPnwVY2KrtuuLPwSjjK3Vf8yCNti2GfXnYKxzy8=w408-h306-k-no,7.46402,3.90514
+114,University Of Ibadan Faculty of Veterinary Medicine,Academic,1,https://lh5.googleusercontent.com/p/AF1QipM7aPNc3gifeaZ2V-8-jBZAx9kbJxhBSegm1TFB=w426-h240-k-no,7.45187,3.89416
+115,Department of Animal Science University of Ibadan,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPvxayw4OrDqXk-ZkVXYZ5WTXLoHi_v2MJW_G3a=w408-h306-k-no,7.45041,3.89554
+116,Department of Agricultural Economics University of Ibadan,Academic,1,https://maps.gstatic.com/tactile/pane/default_geocode-1x.png,7.44992,3.89519
+117,Department of Agricultural extension and rural development,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPd4g1-g3tF0HMRBZXXAW-hTIn0VLhVfnFUvfMT=w408-h544-k-no,7.4498,3.89557
+118,Department of Wildlife and Ecotourism,Academic,1,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=SLKERcIPVun87Edh8FtBBg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=166.57347&pitch=0&thumbfov=100,7.44925,3.89656
+119,Tree Club Park,Recreational,2,https://lh5.googleusercontent.com/p/AF1QipN2ugTnUhazTB3EzlfTs-EXekyStPcz5fcwcoKk=w408-h408-k-no,7.44852,3.89732
+120,Faculty Of AgricultureUniversity Of Ibadan,Academic,1,https://lh5.googleusercontent.com/p/AF1QipMoTKjyXFbw28bxE7_lRkEpakmJW0eX7i2blc2w=w408-h725-k-no,7.44936,3.89372
+121,New Horizons Computer Learning Centers,Technology,6,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Wzp4q6I7XYMSeyZUgJp-SA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=229.44322&pitch=0&thumbfov=100,7.44858,3.89487
+122,Human Nutrition Department,Academic,1,https://lh5.googleusercontent.com/p/AF1QipNc2Q4MrZn1FPwbxh6WzUUGH0eZIBlGatBP_EV2=w408-h306-k-no,7.44801,3.8946
+123,KAAF Auditorium,Event,9,https://lh5.googleusercontent.com/p/AF1QipOBPaZ1ioCsjMgA4YBD1ygTNYhcrrbG33Q1ctpE=w408-h306-k-no,7.44805,3.89421
+124,The Susanne Wenger Garden,Recreational,8,https://lh5.googleusercontent.com/p/AF1QipNzuKKWElgHMPuwMQ3sv48mYDHiHp0DdnlnnBdr=w408-h544-k-no,7.44777,3.89426
+125,Institute of African Studies,Academic,1,https://lh5.googleusercontent.com/p/AF1QipPP9nlzS0LFuO8Y8JYtn7xltIKFXNHFYWpggwjB=w408-h544-k-no,7.44778,3.89386
+126,Central Bank of Nigeria Centre for Economics and Finance (CBN-CENEF) University of Ibadan Ibadan Nigeria.,Administrative,3,https://lh5.googleusercontent.com/p/AF1QipN9yoQS4_MsJxKzeKLSciIptP0cEA10WILxbE6z=w408-h306-k-no,7.44648,3.89457
+127,Basketball Court,Recreational,2,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=W15LCqQJaZrt9NwyVxrH2g&cb_client=search.gws-prod.gps&w=408&h=240&yaw=317.85242&pitch=0&thumbfov=100,7.44604,3.89491
+128,UI Gym (Gamaliel Onosode Gymnasium),Recreational,2,https://lh5.googleusercontent.com/p/AF1QipPTRHYFKDJ8GLQL09VXQWKipMVVyoRVk4yKC3oS=w408-h306-k-no,7.4471,3.89494
+129,Department of Arts and Social Science EducationFaculty of Education University of Ibadan,Academic,1,https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=8Fx8t94NRFu9CHAakfyqMg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=223.3061&pitch=0&thumbfov=100,7.44756,3.89504
+130,Department Of Social Work,Academic,1,https://lh5.googleusercontent.com/p/AF1QipMqCcXOBxAS2FVnkrTgcK81-v5zzJa8UUulZI7E=w408-h306-k-no,7.44769,3.89588
+131,Mcarthur Building,Event,9,https://lh5.googleusercontent.com/p/AF1QipO2Y58h1aploBla6d_28jqNK_XpnFI5fxifQ1p-=w426-h240-k-no,7.44752,3.89623
+132,The JF Adeajayi Gardens UI.,Recreational,8,https://lh5.googleusercontent.com/p/AF1QipNQFLA5y07KREZLR6_lVQ8cvMW9kCDQQNR9glgv=w408-h306-k-no,7.44667,3.8974
+133,Department of Zoology,Academic,1,https://lh5.googleusercontent.com/p/AF1QipNgiZmMT6NHvIaEnBRJqWsk3U6y1Q9k6FSAD8cU=w408-h408-k-no,7.44446,3.89627
+134,Department of Botany University of Ibadan (UI),Academic,1,https://lh5.googleusercontent.com/p/AF1QipPMZO1CICkPU_vAOTFQK_SjVfXeov7bcmjzWMfG=w408-h408-k-no,7.44409,3.89681
+135,Department Of Microbiology University Of Ibadan,Academic,1,https://lh5.googleusercontent.com/p/AF1QipO8o4trnqcgsJ7aXvW7gN5-AwZnNyFNNlqn49er=w426-h240-k-no,7.44361,3.89673
+136,Business Services Center,Student Services,4,https://lh5.googleusercontent.com/p/AF1QipM2gUiFHxHved4k7zL8g3A5jhzmUlCwkjIRp28k=w408-h305-k-no,7.44505,3.89823
+137,School Main Gate,Utility,10,,7.44121,3.90638
+138,Queen Idia Hall UI,Housing,5,https://lh5.googleusercontent.com/p/AF1QipObT-daswec6IzZdt3lZ1vfrqm3Tw5CDMCXY0lX=w408-h306-k-no,7.43792,3.89542
+139,Strabee,Housing,5,https://lh5.googleusercontent.com/p/AF1QipPOv4sF21D0WswnFWs2Ehife0V1hPV5PGPK3lql=w408-h306-k-no,7.4428343,3.9038828
+140,Kuti Hall,Housing,5,https://lh5.googleusercontent.com/p/AF1QipNoT9Xyi_2jdYWlMsNTfkkKxCc9FFKOxfCj2vkC=w408-h306-k-no,7.44297,3.89953
+141,Tafawa Balewa Postgraduate Hall of Residence,Housing,5,https://lh5.googleusercontent.com/p/AF1QipMkHnVzbpF2SwF2IZekWL5uOdrKncbleG5BJkXo=w408-h272-k-no,7.4422,3.89778

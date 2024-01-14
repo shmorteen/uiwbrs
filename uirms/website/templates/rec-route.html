@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{{ coordinates|json_script:"route" }}
+<div id="map" class="col-md-12 mt-0" style="margin-top: 0px; height: 90vh; position: relative;">
+</div>
+
+<script>
+// Sample code for updating the client's marker on the map
+function updateClientLocation(lat, lon) {
+    clientMarker.setLatLng([lat, lon]);
+}
+
+var coordinates = JSON.parse(document.getElementById('route').textContent);  // Pass the coordinates from your Django view
+if (coordinates.length > 0) {
+var map = L.map('map').setView([coordinates[0][0], coordinates[0][1]], 14);  // Set the initial view (center and zoom level)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+} else{
+    console.log("Coordinates:", coordinates);
+}
+// Custom icons
+var userIcon = L.icon({
+    iconUrl: 'https://toppng.com/uploads/preview/red-among-us-png-vector-download-11640991587fawrij7j5s.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    shadowAnchor: [30, 21],
+    popupAnchor: [-3, -76]
+});
+
+var startIcon = L.icon({
+    iconUrl: 'http://www.w3.org/2000/svg',
+    iconSize: [32, 32],
+    iconAnchor: [16, 31],
+    popupAnchor: [0, -25]
+});
+
+var endIcon = L.icon({
+    iconUrl: 'http://www.w3.org/2000/svg', 
+    iconSize: [32, 32],
+    iconAnchor: [16, 31],
+    popupAnchor: [0, -25]
+});
+
+// Initialize the client marker with the user icon
+var clientMarker = L.marker([0, 0], { icon: userIcon }).addTo(map);
+
+// Function to handle location updates
+function onLocationFound(e) {
+    var lat = e.latlng.lat;
+    var lon = e.latlng.lng;
+
+    // If the user marker doesn't exist, create it; otherwise, update its position
+    if (!clientMarker) {
+        clientMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
+    } else {
+        clientMarker.setLatLng([lat, lon]);
+    }
+
+    // Set the user's location as the start point with the user icon
+    var userLocation = [lat, lon];
+    var startLocation = coordinates[0]
+    var startMarker = L.marker(startLocation).addTo(map);
+    var endMarker = L.marker(coordinates[coordinates.length - 1]).addTo(map);
+    var path = L.polyline([startLocation, ...coordinates], { color: 'blue', weight: 10 }).addTo(map); 
+    map.fitBounds(path.getBounds());
+
+    updateClientLocation(lat, lon);
+}
+
+// Set up the geolocation watch
+map.locate({ setView: true, watch: false, enableHighAccuracy: true });
+map.on('locationfound', onLocationFound);
+
+</script>   

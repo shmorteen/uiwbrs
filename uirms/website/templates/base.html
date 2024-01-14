@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   </head>
-  <body>
+  <body class="container-flex">
     {% include 'navbar.html' %}
+    {% include 'tabs.html' %}
     <div class="container-flex bg-body-tertiary">
-        <br>
         {% if messages %}   
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">

@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
-from .views import ItemSearchView
+from .views import LocationSearchView
 
 
 
@@ -15,7 +15,11 @@ urlpatterns = [
     # path('update_record/<int:pk>', views.update_record, name='update_record'),
     path('rsn/', views.retrieve_street_network, name='rsn'),
     path('sl/', views.GetSearchLocation, name='sl'),
+    path('gsl/', views.GoToLocation, name='gsl'),
+    # path('sla/<float:latitude>/<float:longitude>/<str:name>/', views.GetSearchLocationA, name='sla'),
+    # re_path(r'^sla/(?P<latitude>[-]?\d*\.\d+)/(?P<longitude>[-]?\d*\.\d+)/(?P<name>[\w\s.-]+)/$', views.GetSearchLocationA, name='sla'),
     path('route/', views.routing, name='route'),
-    path('search/', ItemSearchView.as_view(), name='item-search'),
-    #path('gv/', views.getVenues, name='gv'),
+    path('rec-route/', views.recrouting, name='rec-route'),
+    path('search/', LocationSearchView.as_view(), name='location-search'),
+    path('recommend-locations/', views.recommend_locations, name='recommend-locations')
 ]

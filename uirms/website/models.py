@@ -16,13 +16,32 @@ class UserRecord(models.Model):
 	
 	def __str__(self):
 		return(f"{self.first_name} {self.last_name}")
+      
+class User(models.Model):
+	pr =  models.CharField(max_length=20)
+	latitude = models.FloatField()
+	longitude = models.FloatField()
 	
-class Item(models.Model):
-    namee = models.CharField(max_length=100)
+	def __str__(self):
+		return(f"{self.pr}")
+	
 	
 class Venue(models.Model):
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    cat = models.CharField(max_length=2)
+    image = models.CharField(max_length=255)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+
+    def __str__(self):
+        return self.name
+    
+class POI(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    cat = models.CharField(max_length=2)
+    image = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
 

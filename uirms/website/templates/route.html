@@ -1,21 +1,98 @@
 {% extends 'base.html' %}
 {% block content %}
-<div id="map" class="sm-none col-md-12 border border-danger" style="height: 650px; width:1350px;position: relative; margin-top: -23px;"></div>
 
 {{ coordinates|json_script:"route" }}
+<div id="map" class="col-md-12 mt-0" style="margin-top: 0px; height: 90vh; position: relative;">
+</div>
+
 <script>
 // Sample code for updating the client's marker on the map
 function updateClientLocation(lat, lon) {
     clientMarker.setLatLng([lat, lon]);
 }
 
+var coordinates = JSON.parse(document.getElementById('route').textContent);  // Pass the coordinates from your Django view
+if (coordinates.length > 0) {
+var map = L.map('map').setView([coordinates[0][0], coordinates[0][1]], 14);  // Set the initial view (center and zoom level)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+} else{
+    console.log("Coordinates:", coordinates);
+}
+// Custom icons
+var userIcon = L.icon({
+    iconUrl: 'https://toppng.com/uploads/preview/red-among-us-png-vector-download-11640991587fawrij7j5s.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    shadowAnchor: [30, 21],
+    popupAnchor: [-3, -76]
+});
+
+var startIcon = L.icon({
+    iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgawQL7nMDAMbyEenAUWKaD-9J-5zLDG7r-A&usqp=CAU',
+    iconSize: [32, 32],
+    iconAnchor: [16, 31],
+    popupAnchor: [0, -25]
+});
+
+var endIcon = L.icon({
+    iconUrl: 'data:image/png;base64,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', 
+    iconSize: [32, 32],
+    iconAnchor: [16, 31],
+    popupAnchor: [0, -25]
+});
+
+// Initialize the client marker with the user icon
+var clientMarker = L.marker([0, 0], { icon: userIcon }).addTo(map);
+
+// Function to handle location updates
+function onLocationFound(e) {
+    var lat = e.latlng.lat;
+    var lon = e.latlng.lng;
+
+    // If the user marker doesn't exist, create it; otherwise, update its position
+    if (!clientMarker) {
+        clientMarker = L.marker([lat, lon], { icon: userIcon }).addTo(map);
+    } else {
+        clientMarker.setLatLng([lat, lon]);
+    }
+
+    // Set the user's location as the start point with the user icon
+    var userLocation = [lat, lon];
+    var startLocation = coordinates[0]
+    var startMarker = L.marker(startLocation, startIcon).addTo(map);
+    var endMarker = L.marker(coordinates[coordinates.length - 1], endIcon).addTo(map);
+    var path = L.polyline([startLocation, ...coordinates], { color: 'blue', weight: 10 }).addTo(map); 
+    map.fitBounds(path.getBounds());
+
+    updateClientLocation(lat, lon);
+}
+
+// Set up the geolocation watch
+map.locate({ setView: true, watch: false, enableHighAccuracy: true });
+map.on('locationfound', onLocationFound);
+
+</script>   
+
+<!-- {{ coordinates|json_script:"route" }} 
+<script>
+// Sample code for updating the client's marker on the map
+function updateClientLocation(lat, lon) {
+    clientMarker.setLatLng([lat, lon]);
+}
     var coordinates = JSON.parse(document.getElementById('route').textContent);  // Pass the coordinates from your Django view
-    
+    console.log(coordinates)
+    if (coordinates.length > 0) {   
 var map = L.map('map').setView([coordinates[0][0], coordinates[0][1]], 14);  // Set the initial view (center and zoom level)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+}else {
+     console.log(coordinates)
+}
     // var customIcon = L.icon({
     // iconUrl: './red.png',
     // iconSize: [32, 32], // set the size of the icon
@@ -25,26 +102,14 @@ var map = L.map('map').setView([coordinates[0][0], coordinates[0][1]], 14);  // 
     // shadowAnchor: [30, 21],  // the same for the shadow
     // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor{ icon: customIcon }
     // });
+if(map) {
     var startMarker = L.marker(coordinates[0]).addTo(map);
-    var endMarker = L.marker(coordinates[coordinates.length - 1]).addTo(map);
-    // console.log(coordinates)
+    var endMarker = L.marker(coordinates[coordinates.length - 1]).addTo(map);   
     var path = L.polyline(coordinates, {color: 'blue', weight: 10}).addTo(map);  // Create and add the path to the map
     map.fitBounds(path.getBounds());
+} else {
+    console.error("Map is not initialized.");
+}
 </script>   
-    <!-- <script>
-        var map = L.map('map').setView([{{ latitude_start }} {{ longitude_start }}] 14);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-
-        // Define the coordinates of the shortest path nodes
-        var shortestPathNodes = [
-            {% for node in shortest_path %}
-                [{{ graph.nodes.node.y }}, {{ graph.nodes.node.x }}],
-            {% endfor %}
-        ];
-
-        L.polyline(shortestPathNodes, { color: 'blue' }).addTo(map);
-    </script> -->
-{% endblock %}
+{% endblock %} -->

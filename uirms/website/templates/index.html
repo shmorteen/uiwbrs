@@ -4,76 +4,365 @@
 
 {% if user.is_authenticated %}
 
+<style>
+    /* Add custom styles for buttons */
+    #map {
+    margin-top: 0px;
+    height: 90vh;
+    position: relative;
+  }
 
-<div id="map" class="sm-none col-md-12 border border-danger" style="margin-top:0px; height:650px; width:1350px; position: relative; "></div>
-    
+  .button-container a {
+    font-family: 'Fredoka One', cursive;
+    font-size: 24px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: inline-block;
+  }
 
+  .button-container a:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-container a span {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    padding: 8px;
+    background-color: #9fb6c3;
+    color: black;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .button-container a:hover span {
+    display: inline-block;
+    opacity: 1;
+  }
+    /* Hide the radio buttons */
+    input[type="radio"] {
+    display: none;
+}
+
+/* Style the labels as pill buttons */
+label.btn {
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+
+/* Style the active state */
+input[type="radio"]:checked + label.btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Style the icons */
+label.btn i {
+    margin-right: 5px;
+}
+</style>
+
+<div id="map" class="col-md-12" style="margin-top: 0px; height: 90vh; position: relative;">
+</div>
+   
 <!-- {{ stations|json_script:"stations_json" }} -->
+<div class="d-block d-md-none">
+    <div style="position: absolute; top: 620px; right: 50px; z-index: 1000;" class="button-container">
+        <div class="d-flex flex-column">
+            <a class="btn btn-light btn-outline-danger m-2" id="locateButton">
+                <i class="bi bi-pin-map-fill"></i>
+                <span>Locate Me</span>
+            </a>
+            <!-- <a class="btn btn-light btn-outline-danger m-2" id="locateButton">
+                <i class="bi bi-map"></i>
+                <span>Me</span>
+            </a> -->
+            <a class="btn btn-light btn-outline-warning m-2" href="{% url 'index' %}" id="homeButton">
+                <i class="bi bi-map"></i>
+                <span>Home</span>
+            </a>
+            <a class="btn btn-light btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="directionButton">
+                <i class="bi bi-signpost"></i>
+                <span>Route</span>
+            </a>
+        </div>
+    </div>
+</div>
 
+<!-- Button for large screens -->
+<div class="d-none d-md-block">
+    <div style="position: absolute; top: 430px; right: 50px; z-index: 1000;" class="button-container">
+        <div class="d-flex flex-column">
+            <a class="btn btn-light btn-outline-danger m-2" id="locateButton">
+                <i class="bi bi-pin-map-fill"></i>
+                <span>Locate Me</span>
+            </a>
+            <!-- <a class="btn btn-light btn-outline-danger m-2" id="locateButton">
+                <i class="bi bi-map"></i>
+                <span>Me</span>
+            </a> -->
+            <a class="btn btn-light btn-outline-warning m-2" href="{% url 'index' %}" id="homeButton">
+                <i class="bi bi-map"></i>
+                <span>Home</span>
+            </a>
+            <a class="btn btn-light btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="directionButton">
+                <i class="bi bi-signpost"></i>
+                <span>Route</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Enter Origin And Destination</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'route' %}">
+                    {% csrf_token %}
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-row p-2 m-0">
+                            <input type="radio" id="default" name="network_type" value="all" checked>
+                            <label for="default" class="btn">
+                                <i class="fas fa-globe"></i> All
+                            </label>
+                        
+                            <input type="radio" id="walking" name="network_type" value="walk">
+                            <label for="walking" class="btn">
+                                <i class="fas fa-walking"></i> Walking
+                            </label>
+                        
+                            <input type="radio" id="cycling" name="network_type" value="bike">
+                            <label for="cycling" class="btn">
+                                <i class="fas fa-bicycle"></i> Cycling
+                            </label>
+                        
+                            <input type="radio" id="driving" name="network_type" value="drive">
+                            <label for="driving" class="btn">
+                                <i class="fas fa-car"></i> Driving
+                            </label>
+                        </div>                                
+                        <div class="d-flex flex-row mt-3" style="width:100%;">
+                            <div class="d-flex flex-column mx-2">
+                                <i class="bi bi-circle mx-2 mt-2 mb-4 text-secondary"></i>
+                                <i class="bi bi-three-dots-vertical mx-2"></i>
+                                <i class="bi bi-geo-alt-fill mx-2 mt-4 text-danger"></i>
+                            </div>
+                            <div class="d-flex flex-column" style="width:100%;">
+                                <div>
+                                    <input class="form-control" name="start_location" id="search-input-start" type="text" placeholder="Choose start location">
+                                    <div id="suggestions-dropdown-start"></div>
+                                </div>
+                                <div class="form-check form-switch mt-1" style="font-size: small; font-weight: bolder;">
+                                    <input type="hidden" name="start_location_latitude" id="start_location_latitude">
+                                    <input type="hidden" name="start_location_longitude" id="start_location_longitude">
+    
+    
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onchange="updateStartLocation()">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Select current location</label>
+                                </div>
+                                <br>
+                                <div>
+                                    <input class="form-control" name="destination_location" id="search-input-destination" type="text" placeholder="Choose destination">
+                                    <div id="suggestions-dropdown-destination"></div>
+                                </div> 
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Get Route</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+ // Add an event listener to the start location input field
+    const searchInputStart = document.getElementById('search-input-start');
+    searchInputStart.addEventListener('input', function () {
+        handleInput('start');
+    });
+
+    // Add an event listener to the destination input field
+    const searchInputDestination = document.getElementById('search-input-destination');
+    searchInputDestination.addEventListener('input', function () {
+        handleInput('destination');
+    });
+
+    function handleInput(type) {
+        const searchInput = type === 'start' ? searchInputStart : searchInputDestination;
+        const dropdown = type === 'start' ? document.getElementById('suggestions-dropdown-start') : document.getElementById('suggestions-dropdown-destination');
+
+        const query = searchInput.value;
+
+        // Make an AJAX request to the Django view
+        fetch(`/search/?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the suggestions data and update the UI
+                updateSuggestionsDropdown(data.suggestions, dropdown, searchInput);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function updateSuggestionsDropdown(suggestions, dropdown, searchInput) {
+        // Update the UI to display suggestions in a dropdown
+        dropdown.innerHTML = '';
+
+        suggestions.forEach(suggestion => {
+            const suggestionElement = document.createElement('div');
+            suggestionElement.innerText = suggestion.name;
+            dropdown.appendChild(suggestionElement);
+
+            // Attach click event to handle selection
+            suggestionElement.addEventListener('click', function () {
+                // Handle selection logic here (e.g., fill input with selected value)
+                searchInput.value = suggestion.name;
+                dropdown.innerHTML = ''; // Clear dropdown
+            });
+        });
+    }
+
+    function updateStartLocation() {
+    var checkbox = document.getElementById('flexSwitchCheckDefault');
+    var startLocationInput = document.getElementById('search-input-start');
+
+    // Disable or enable the start location input based on the switch state
+    startLocationInput.disabled = checkbox.checked;
+
+    // Update the placeholder text based on the switch state
+    startLocationInput.placeholder = checkbox.checked ? 'Current location Selected' : 'Choose start location';
+
+    // Clear the input value and suggestions dropdown when switching to current location
+    if (checkbox.checked) {
+        // Use the current location as the start location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            
+            // Set the placeholder and store the location data in a data attribute
+            startLocationInput.setAttribute('start-location', latitude + ',' + longitude);
+            startLocationInput.value = 'Current location Selected';
+
+            // Set the hidden fields with the start location data
+            document.getElementById('start_location_latitude').value = latitude;
+            document.getElementById('start_location_longitude').value = longitude;
+        });
+    } else {
+        // If the checkbox is unchecked, clear the input value and data attribute
+        startLocationInput.value = '';
+        startLocationInput.removeAttribute('start-location');
+
+        document.getElementById('start_location_latitude').value = '';
+        document.getElementById('start_location_longitude').value = '';
+    }
+}
+
+
+
+// var map = L.map('map').setView([7.4477245, 3.8967116], 17);
+// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     maxZoom: 19,
+//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// }).addTo(map);
+// var customIcon = L.icon({
+//     iconUrl: 'https://toppng.com/uploads/preview/red-among-us-png-vector-download-11640991587fawrij7j5s.png', // Adjust the path to your custom marker image
+//     iconSize: [32, 32],
+//     iconAnchor: [16, 32],
+//     popupAnchor: [0, -32]
+// });
+
+// var locateButton = document.getElementById('locateButton');
+//     locateButton.addEventListener('click', function () {
+//         map.locate({ setView: true, maxZoom: 17 });
+//     });
+
+//     map.on('locationfound', function (e) {
+//     // Use the custom icon for the marker
+//     var marker = L.marker(e.latlng, { icon: customIcon }).addTo(map);
+//     var loc = e.latlng;
+//     marker.bindPopup("You are here").openPopup();
+//     console.log(loc);
+// });
+//     map.on('locationerror', function (e) {
+//         alert("Location access denied or an error occurred.");
+//     });
+
 var map = L.map('map').setView([7.4477245, 3.8967116], 17);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// let stations = JSON.parse(document.getElementById('stations_json').textContent)
+var geofenceCenter = [7.4477245, 3.8967116];
+var geofenceRadius = 200000; // Specify the geofence radius in meters
 
-// for each station, add a Marker
-// stations.forEach(station => {
-//     L.marker([station.latitude, station.longitude]).addTo(map)
-// })
-// initialize the map on the "map" div with a given center and zoom
-// Sample code for updating the client's marker on the map
+var customIcon = L.icon({
+    iconUrl: 'https://toppng.com/uploads/preview/red-among-us-png-vector-download-11640991587fawrij7j5s.png',
+    iconSize: [40, 40],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 
-// window.onload = function () {
-//     // This code will run when the page has fully loaded
-//     updateClientLocation(userloc); // Call your function with the desired latitude and longitude
-// };
+var isUserInsideGeofence = false;
 
-// function updateClientLocation(lat, lon) {
-//     clientMarker.setLatLng([lat, lon]);
-// }
+function checkGeofence(location) {
+    var distanceToGeofence = location.distanceTo(geofenceCenter);
 
-var locateButton = document.getElementById('locateButton');
-    locateButton.addEventListener('click', function () {
-        map.locate({ setView: true, maxZoom: 17 });
-    });
+    if (distanceToGeofence <= geofenceRadius) {
+        isUserInsideGeofence = true;
+        // User is inside the geofence, allow access to the page
 
-    map.on('locationfound', function (e) {
-        var marker = L.marker(e.latlng).addTo(map);
-        var loc = e.latlng
-        marker.bindPopup("You are here").openPopup();
-        console.log(loc)
-    });
+        // Make an AJAX request to the Django server to send the location data
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", "{}", true);
+        // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-    map.on('locationerror', function (e) {
-        alert("Location access denied or an error occurred.");
-    });
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         // Handle the response from the server if needed
+        //         console.log(xhr.responseText);
+        //     }
+        // };
 
-map.on('click', (event) => {
-    let lat = event.latlng.lat
-    let longitude = event.latlng.lng
-    L.marker([event.latlng.lat, event.latlng.lng]).addTo(map)
-    // fetch(`/get-nearest-station?latitudes=${lat}&longitudes=${longitude}`).then(response => response.json()).then(result => {
-        // console.log(result)
-        // station_coordinates = result.coordinates
-        // user_coordinates = [lat, longitude]
-        // let polyline = L.polyline([user_coordinates, station_coordinates]).addTo(map)
-    // })
-    // console.log(event.latlng)
-    var popup = L.popup()
-    .setLatLng([lat, longitude])
-    .setContent(`<h1>University of Ibadan</h1>`)
-    .openOn(map);
-})
+        // // Send the location data as JSON
+        // xhr.send(JSON.stringify({ latitude: location.lat, longitude: location.lng }));
+    } else {
+        isUserInsideGeofence = false;
+        // User is outside the geofence, restrict access to the page
+        alert("You are outside the university area. Access denied.");
+        // window.location.href = "https://www.google.com/maps";
+    }
+}
 
-// Add markers for start and end points
-// L.marker([7.4416532, 3.9062510]).addTo(map).bindPopup("Start Point");
-//         L.marker([7.4427070, 3.9006930]).addTo(map).bindPopup("End Point");
+map.on('locationfound', function (e) {
+    var marker = L.marker(e.latlng, { icon: customIcon }).addTo(map);
+    marker.bindPopup("You are here").openPopup();
+    checkGeofence(e.latlng);
+});
 
-//         // Draw the route (you would need routing data here)
-//         var route = L.polyline([[7.4416532, 3.9062510], [7.4427070, 3.9006930]], {color: 'blue'}).addTo(map);
+map.on('locationerror', function (e) {
+    alert("Location access denied or an error occurred.");
+});
+
+map.locate({ setView: true, maxZoom: 17 });
 </script>
 
 {% else %}
@@ -90,6 +379,9 @@ map.on('click', (event) => {
         <br>
         <button type="submit" class="btn btn-secondary">Login</button>
 </form>
+
+
+
 
 {% endif %}
 

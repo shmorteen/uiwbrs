@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="d-flex flex-column mt-md-3">
+  <div class="d-flex flex-column mb-md-3">
+    <h4 class="text-center">{{ category }} recommended for you.</h4>
+  </div>
+  <div class="modal-body d-flex flex-row flex-wrap justify-content-center">
+    {% for recommendation in top_recommendations %}
+    <div class="card border-primary mx-1 mb-3 shadow" style="width: 18rem;">
+      <img class="card-img-top m-2" style="height: 250px; width:auto; object-fit: cover;" src="{{ recommendation.image }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title text-primary">{{ category }}</h5>
+        <p class="card-text">{{ recommendation.name }}</p>
+        <div class="d-flex flex-row justify-content-between">
+          <div class="col-lg-5 col-md-6 col-sm-12 mb-2">
+            <form method="POST" action="{% url 'rec-route' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success btn-block">
+                <i class="fas fa-route"></i> Get Route
+              </button>
+              <input type="hidden" name="end_location_latitude" value="{{ recommendation.latitude }}" id="end_location_latitude">
+              <input type="hidden" name="end_location_longitude" value="{{ recommendation.longitude }}" id="end_location_longitude">
+              <input type="hidden" name="start_location_latitude" id="start_location_latitude">
+              <input type="hidden" name="start_location_longitude" id="start_location_longitude">
+            </form>
+          </div>
+          <div class="col-lg-5 col-md-6 col-sm-12">
+            <form method="POST" action="{% url 'gsl' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-secondary btn-block">
+                <i class="fas fa-map-marker-alt"></i> View Location
+              </button>
+              <input type="hidden" name="search_name" value="{{ recommendation.name }}" id="search_name">
+              <input type="hidden" name="end_location_latitude" value="{{ recommendation.latitude }}" id="end_location_latitude">
+              <input type="hidden" name="end_location_longitude" value="{{ recommendation.longitude }}" id="end_location_longitude">
+            </form>
+          </div>
+        </div>       
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+      <script>
+        function updateStartLocation() {
+            var startLocationLatitudeInput = document.getElementById('start_location_latitude');
+            var startLocationLongitudeInput = document.getElementById('start_location_longitude');
+        
+            console.log('Before update - Latitude:', startLocationLatitudeInput.value, 'Longitude:', startLocationLongitudeInput.value);
+        
+            if (startLocationLatitudeInput.value == '' || startLocationLongitudeInput.value == '') {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+        
+                    // Set the hidden fields with the start location data
+                    startLocationLatitudeInput.value = latitude;
+                    startLocationLongitudeInput.value = longitude;
+        
+                    console.log('After update - Latitude:', startLocationLatitudeInput.value, 'Longitude:', startLocationLongitudeInput.value);
+                });
+            }
+        }
+
+        // Run the updateStartLocation function on page load
+        window.onload = function() {
+            updateStartLocation();
+        };
+        </script>
+
+        {% else %}
+        <h1>Login</h1>
+        <form method="POST" action="{% url 'index' %}">
+          {% csrf_token %}
+                      <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-secondary">Login</button>
+          </form>
+{% endif %}
+
+{% endblock %}
