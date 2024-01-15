@@ -21,7 +21,7 @@ click==8.0.1
 click-plugins==1.1.1
 cligj==0.7.2
 colorama
-comm==0.4.0
+comm
 contourpy==0.5.2
 cryptography==36.0.1
 cycler==0.11.0
