@@ -37,7 +37,7 @@ Fiona
 folium
 fonttools
 fqdn
-GDAL
+GDAL==3.7.0
 geographiclib
 geopandas
 geopy
